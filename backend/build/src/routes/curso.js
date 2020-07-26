@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const curso_1 = require("../controllers/curso");
+const authentication_1 = require("../middlewares/authentication");
+exports.curso_router = express_1.Router();
+exports.curso_router.get('/cursos', authentication_1.verificaToken, authentication_1.verifyStudent, curso_1.getCursos);
+exports.curso_router.put('/register-curso/:id', authentication_1.verificaToken, authentication_1.verifyStudent, curso_1.registerCurso);
+exports.curso_router.get('/cursos-all', curso_1.getCursosAll);
+exports.curso_router.get('/curso/:id', curso_1.getCursoById);
