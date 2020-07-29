@@ -7,4 +7,5 @@ exports.curso_router = express_1.Router();
 exports.curso_router.get('/cursos', authentication_1.verificaToken, authentication_1.verifyStudent, curso_1.getCursos);
 exports.curso_router.put('/register-curso/:id', authentication_1.verificaToken, authentication_1.verifyStudent, curso_1.registerCurso);
 exports.curso_router.get('/cursos-all', curso_1.getCursosAll);
-exports.curso_router.get('/curso/:id', curso_1.getCursoById);
+// curso_router.get('/curso/:id', getCursoById);
+exports.curso_router.get('/cursos-teacher-all', authentication_1.verificaToken, authentication_1.verificaAdmin_Role, curso_1.getCursosTeacher);

@@ -80,12 +80,37 @@ exports.registerCurso = (req, res) => {
     });
 };
 // maestro
-exports.getCursoById = (req, res) => {
+// export const getCursoById = (req: Request, res: Response) => {
+//     let {user} : any = req.query;
+//     let {id} = req.params;
+//     cursoModel.findById(id)
+//         .where({teacher: user._id})
+//         .exec((err, cursoDB) => {
+//             if(err) {
+//                 return res.status(500).json({
+//                     error: {
+//                         message: err.message
+//                     }
+//                 })
+//             }
+//             if(!cursoDB) {
+//                 return res.status(404).json({
+//                     error: {
+//                         message: 'id incorrecto'
+//                     } 
+//                 })
+//             }
+//             res.status(200).json({
+//                 data: cursoDB
+//             })
+//         })
+// }
+exports.getCursosTeacher = (req, res) => {
     let { user } = req.query;
-    let { id } = req.params;
-    mongoose_1.cursoModel.findById(id)
+    mongoose_1.cursoModel.find()
         .where({ teacher: user._id })
-        .exec((err, cursoDB) => {
+        .populate('silabo')
+        .exec((err, cursos) => {
         if (err) {
             return res.status(500).json({
                 error: {
@@ -93,15 +118,15 @@ exports.getCursoById = (req, res) => {
                 }
             });
         }
-        if (!cursoDB) {
+        if (cursos.length === 0) {
             return res.status(404).json({
                 error: {
-                    message: 'id incorrecto'
+                    message: 'no se encontraron los cursos'
                 }
             });
         }
         res.status(200).json({
-            data: cursoDB
+            data: cursos
         });
     });
 };

@@ -93,7 +93,7 @@ class file extends Component {
   }
   
   render() {
-      let classList = '';
+    let classList = '';
       if(this.state.disabled) {
         classList = ['btn-file disabled']
         }else {

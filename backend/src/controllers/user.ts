@@ -5,7 +5,6 @@ import jwt from 'jsonwebtoken';
 
 export const checkinUser = (req: Request, res: Response) => {
     let {body} = req;
-    console.log(body);
     let objectUser = new userModel({
         name: body.name,
         surname: body.surname,
@@ -82,4 +81,27 @@ export const logged = (req: Request, res: Response) => {
     )
 }
 
+export const getUser = (req: Request, res: Response) => {
+    let {user}  = req.query;
 
+    userModel.findById(user._id)
+            .exec((err, userDB) => {
+                if(err) {
+                    return res.status(500).json({
+                        error: {
+                            message: err.message
+                        }
+                    })
+                }
+                if(!userDB) {
+                    return res.status(404).json({
+                        error: {
+                            message: 'id incorrecto'
+                        }
+                    })
+                }
+                res.status(200).json({
+                    data: userDB
+                })
+            })
+}

@@ -5,7 +5,6 @@ import jwt from 'jsonwebtoken';
 
 export const verificaToken = (req: Request, res: Response , next: NextFunction ) => {
     let {token} : any = req.headers
-    
     jwt.verify(token, 'code'  ,(err: any, decoded : any ) => {
         if(err) {
             return res.status(401).json({

@@ -55,7 +55,7 @@ const silaboPdfCurso = async (objectSilabo: iSilabo, objectCurso: object, user: 
 
 
 export const addNewCurso = (req: Request, res: Response) => {
-    let {body, query} = req;
+    let {body, query} : any= req;
 
     silaboPdfCurso(body.objectSilabo, body.objectCurso, query.user._id)
     .then((response) => {
@@ -75,45 +75,6 @@ export const addNewCurso = (req: Request, res: Response) => {
 
 
 
-// const addSilaboOnCurso = async(silabos: iSilabo, id: any) => {
-//     const session = await startSession();
-//     session.startTransaction();
-//     try {
-//         const opts = { session };
-//         cursoModel.createCollection();
-//         silaboModel.createCollection();
 
-//         let objectSilabo = new silaboModel({
-//             title: silabos.title,
-//             year: silabos.year,
-//             semestre: silabos.semestre,
-//             pdfname: silabos.pdfname,
-//             pdfurl: silabos.pdfurl,
-//             user: id
-//         })
-
-//         let silabo = await objectSilabo.save(opts);
-
-//         console.log(silabo._id) // qw25e1432rt1dfg47s6asg4h4b
-
-//         let silaboañadido = {silabo:":b :v como le hago el push ahora :' )"}
-//         let options = {
-//             new: true,
-//             session
-//         }
-//         cursoModel.findOneAndUpdate(id, silaboañadido , options, () => {})
-
-
-//         await session.commitTransaction();
-//         session.endSession();
-
-//         return 'uk'
-
-//     }catch( err ) {
-//         await session.abortTransaction();
-//         session.endSession();
-//         throw err        
-//     } 
-// }
 
 

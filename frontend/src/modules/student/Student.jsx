@@ -5,6 +5,7 @@ import Navbar from '../../components/navbars/navbar';
 import Sidebar from '../../components/sidebars/sidebar';
 import './Student.css'
 import { AuthService } from '../../services/Auth';
+import Cursosall from './containers/cursosall';
     
 const Student = () => {
     const _sAuth = new AuthService();
@@ -14,6 +15,7 @@ const Student = () => {
             <main className="main">
                 <Sidebar />
                 <Switch>
+                    <Route path='/student/cursos' component={Cursosall} />
                     <Route path='/student' component={Homeview} />
                 </Switch>
             </main>

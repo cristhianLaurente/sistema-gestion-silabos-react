@@ -8,7 +8,6 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 exports.checkinUser = (req, res) => {
     let { body } = req;
-    console.log(body);
     let objectUser = new mongoose_1.userModel({
         name: body.name,
         surname: body.surname,
@@ -67,6 +66,29 @@ exports.logged = (req, res) => {
                 user: userDB,
                 access_token
             }
+        });
+    });
+};
+exports.getUser = (req, res) => {
+    let { user } = req.query;
+    mongoose_1.userModel.findById(user._id)
+        .exec((err, userDB) => {
+        if (err) {
+            return res.status(500).json({
+                error: {
+                    message: err.message
+                }
+            });
+        }
+        if (!userDB) {
+            return res.status(404).json({
+                error: {
+                    message: 'id incorrecto'
+                }
+            });
+        }
+        res.status(200).json({
+            data: userDB
         });
     });
 };
