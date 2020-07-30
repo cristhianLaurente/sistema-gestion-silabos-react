@@ -1,6 +1,5 @@
-import { Request, Response } from 'express';
+import { Request, Response, query } from 'express';
 import { cursoModel } from '../db/mongoose';
-
 
 export const getCursos = (req: Request, res: Response) => {
     let {user} : any = req.query;
@@ -30,6 +29,10 @@ export const getCursos = (req: Request, res: Response) => {
         })
 
 }
+
+
+
+
 export const getCursosAll = (req: Request, res: Response) => {
     cursoModel.find()
         .populate('silabo','title pdfname pdfurl')

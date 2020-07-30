@@ -35,8 +35,7 @@ exports.userSchema = new mongoose_1.Schema({
         required: false
     },
     year: {
-        type: String,
-        required: false
+        type: String
     },
     career: {
         type: String,

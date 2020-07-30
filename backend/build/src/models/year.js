@@ -2,13 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 exports.yearSchema = new mongoose_1.Schema({
-    yearacamic: {
+    year: {
         type: String,
-        required: [true, 'the yearacademic is required']
+        required: true
     },
     state: {
         type: Boolean,
-        required: true,
-        default: true,
+        default: true
     }
 });

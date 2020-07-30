@@ -10,8 +10,7 @@ exports.silaboSchema = new mongoose_1.Schema({
         required: required('title')
     },
     year: {
-        type: String,
-        required: required('year')
+        type: String
     },
     semestre: {
         type: String,

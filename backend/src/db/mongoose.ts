@@ -31,3 +31,4 @@ export const connect__mongoDB = () => {
 export const userModel = model('User', userSchema);
 export const silaboModel = model('Silabo', silaboSchema);
 export const cursoModel = model('Curso', cursoSchema);
+

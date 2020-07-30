@@ -35,8 +35,7 @@ export const userSchema: Schema = new Schema({
         required: false
     }, 
     year:{
-        type: String,
-        required: false
+        type: String
     },
     career: {
         type: String,

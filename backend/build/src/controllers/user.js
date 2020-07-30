@@ -69,6 +69,28 @@ exports.logged = (req, res) => {
         });
     });
 };
+exports.updateUserById = (req, res) => {
+    let { query, body } = req;
+    const options = { new: true };
+    mongoose_1.userModel.findByIdAndUpdate(query.user._id, body, options, (err, userDB) => {
+        if (err) {
+            res.status(500).json({
+                content: 'Error en la base de datos',
+                err
+            });
+        }
+        if (!userDB) {
+            res.status(400).json({
+                err: {
+                    message: 'El ID no es correcto'
+                }
+            });
+        }
+        res.status(200).json({
+            data: userDB
+        });
+    });
+};
 exports.getUser = (req, res) => {
     let { user } = req.query;
     mongoose_1.userModel.findById(user._id)

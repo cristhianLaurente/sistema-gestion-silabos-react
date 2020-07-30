@@ -81,6 +81,32 @@ export const logged = (req: Request, res: Response) => {
     )
 }
 
+export const updateUserById = (req: Request, res: Response) => {
+    let {query, body} = req;
+
+    const options = { new: true};
+
+    userModel.findByIdAndUpdate(query.user._id, body, options, (err, userDB) => {
+        if(err) {
+            res.status(500).json({
+                content: 'Error en la base de datos',
+                err
+            });
+        }
+        if(!userDB) {
+            res.status(400).json({
+                err: {
+                    message: 'El ID no es correcto'
+                }
+            });
+        }
+        res.status(200).json({
+            data: userDB
+        })
+    })
+}
+
+
 export const getUser = (req: Request, res: Response) => {
     let {user}  = req.query;
 
@@ -105,3 +131,5 @@ export const getUser = (req: Request, res: Response) => {
                 })
             })
 }
+
+

@@ -24,6 +24,5 @@ export const cursoSchema: Schema = new Schema({
             required: false
         }
     ]
-
 })
 

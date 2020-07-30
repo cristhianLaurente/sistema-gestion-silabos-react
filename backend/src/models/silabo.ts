@@ -11,9 +11,8 @@ export const silaboSchema : Schema = new Schema({
         type: String,
         required: required('title')
     },
-    year: {
-        type: String,
-        required: required('year')
+    year:{
+        type: String
     },
     semestre: {
         type: String,
